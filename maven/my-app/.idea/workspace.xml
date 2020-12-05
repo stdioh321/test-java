@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="my-app:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2b0e06c-95fb-49d1-9dfa-9232428b7298" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/my_app_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_findbugs_annotations_3_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_16.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myfile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sockets.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/app/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/app/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/app/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/app/Servidor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/app/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/exceptions/CustomException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mycompany/app/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.mycompany.app.AppTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.mycompany.app.AppTest.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1kseYCaA2tNkhxGJ3uJPwjj9xad" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager" selected="Application.Cliente">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mycompany.app.App" />
+      <module name="sockets" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mycompany.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Cliente" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mycompany.app.Cliente" />
+      <module name="sockets" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mycompany.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NanoHTTPd" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mycompany.app.NanoHTTPd" />
+      <module name="sockets" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mycompany.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Cliente" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.NanoHTTPd" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2b0e06c-95fb-49d1-9dfa-9232428b7298" name="Default Changelist" comment="" />
+      <created>1606493774843</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606493774843</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="415" y="220" key="#Notifications" timestamp="1606874712626">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="415" y="220" key="#Notifications/0.23.1344.733@0.23.1344.733" timestamp="1606874712626" />
+    <state x="160" y="23" key="#Project_Structure" timestamp="1606906429022">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="160" y="23" key="#Project_Structure/0.23.1344.733@0.23.1344.733" timestamp="1606906429022" />
+    <state x="485" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1607131327557">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="485" y="80" key="#com.intellij.ide.util.MemberChooser/0.23.1344.733@0.23.1344.733" timestamp="1607131327557" />
+    <state x="410" y="187" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606529076322">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="410" y="187" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1344.733@0.23.1344.733" timestamp="1606529076322" />
+    <state x="264" y="71" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1606875038706">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="264" y="71" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1344.733@0.23.1344.733" timestamp="1606875038706" />
+    <state x="360" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606874704976">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="360" y="132" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1344.733@0.23.1344.733" timestamp="1606874704976" />
+    <state x="423" y="105" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606529389133">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="423" y="105" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1344.733@0.23.1344.733" timestamp="1606529389133" />
+    <state width="1302" height="183" key="GridCell.Tab.0.bottom" timestamp="1607170191123">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.0.bottom/0.23.1344.685@0.23.1344.685" timestamp="1606795814151" />
+    <state width="1302" height="183" key="GridCell.Tab.0.bottom/0.23.1344.733@0.23.1344.733" timestamp="1607170191122" />
+    <state width="1302" height="183" key="GridCell.Tab.0.center" timestamp="1607170191121">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.0.center/0.23.1344.685@0.23.1344.685" timestamp="1606795814150" />
+    <state width="1302" height="183" key="GridCell.Tab.0.center/0.23.1344.733@0.23.1344.733" timestamp="1607170191121" />
+    <state width="1302" height="183" key="GridCell.Tab.0.left" timestamp="1607170191120">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.0.left/0.23.1344.685@0.23.1344.685" timestamp="1606795814149" />
+    <state width="1302" height="183" key="GridCell.Tab.0.left/0.23.1344.733@0.23.1344.733" timestamp="1607170191120" />
+    <state width="1302" height="183" key="GridCell.Tab.0.right" timestamp="1607170191122">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.0.right/0.23.1344.685@0.23.1344.685" timestamp="1606795814150" />
+    <state width="1302" height="183" key="GridCell.Tab.0.right/0.23.1344.733@0.23.1344.733" timestamp="1607170191122" />
+    <state width="1302" height="154" key="GridCell.Tab.1.bottom" timestamp="1607168769632">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.1.bottom/0.23.1344.685@0.23.1344.685" timestamp="1606795814153" />
+    <state width="1302" height="154" key="GridCell.Tab.1.bottom/0.23.1344.733@0.23.1344.733" timestamp="1607168769632" />
+    <state width="1302" height="154" key="GridCell.Tab.1.center" timestamp="1607168769632">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.1.center/0.23.1344.685@0.23.1344.685" timestamp="1606795814152" />
+    <state width="1302" height="154" key="GridCell.Tab.1.center/0.23.1344.733@0.23.1344.733" timestamp="1607168769632" />
+    <state width="1302" height="154" key="GridCell.Tab.1.left" timestamp="1607168769631">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.1.left/0.23.1344.685@0.23.1344.685" timestamp="1606795814152" />
+    <state width="1302" height="154" key="GridCell.Tab.1.left/0.23.1344.733@0.23.1344.733" timestamp="1607168769631" />
+    <state width="1302" height="154" key="GridCell.Tab.1.right" timestamp="1607168769632">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="1302" height="228" key="GridCell.Tab.1.right/0.23.1344.685@0.23.1344.685" timestamp="1606795814152" />
+    <state width="1302" height="154" key="GridCell.Tab.1.right/0.23.1344.733@0.23.1344.733" timestamp="1607168769632" />
+    <state x="210" y="51" key="Maven.ArtifactSearchDialog" timestamp="1607075602830">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="210" y="51" key="Maven.ArtifactSearchDialog/0.23.1344.733@0.23.1344.733" timestamp="1607075602830" />
+    <state x="160" y="23" width="964" height="733" key="SettingsEditor" timestamp="1607113862090">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="160" y="23" width="964" height="733" key="SettingsEditor/0.23.1344.733@0.23.1344.733" timestamp="1607113862090" />
+    <state x="459" y="265" key="classpath-attribute-editor" timestamp="1606528782168">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="459" y="265" key="classpath-attribute-editor/0.23.1344.733@0.23.1344.733" timestamp="1606528782168" />
+    <state x="0" y="21" width="586" height="735" key="find.popup" timestamp="1606493873095">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="0" y="21" width="586" height="735" key="find.popup/0.23.1344.733@0.23.1344.733" timestamp="1606493873095" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1606648612293">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.23.1344.733@0.23.1344.733" timestamp="1606648612293" />
+    <state x="337" y="175" key="run.anything.popup" timestamp="1607136678452">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="337" y="175" key="run.anything.popup/0.23.1344.733@0.23.1344.733" timestamp="1607136678452" />
+    <state x="337" y="33" width="670" height="724" key="search.everywhere.popup" timestamp="1607131739138">
+      <screen x="0" y="23" width="1344" height="733" />
+    </state>
+    <state x="337" y="32" width="670" height="676" key="search.everywhere.popup/0.23.1344.685@0.23.1344.685" timestamp="1606795799656" />
+    <state x="337" y="33" width="670" height="724" key="search.everywhere.popup/0.23.1344.733@0.23.1344.733" timestamp="1607131739138" />
+  </component>
+</project>
