@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<!-- projeto ant-build-xml -->
+    <target name="compile" >
+        <javac srcdir="." classpath="./byte-buddy-1.10.18.jar">
+        
+        <include name="**/*.java"/>
+
+        <exclude name="**/Example.java"/>
+        </javac>
+    </target>
+    <target name="run" depends="compile">
+        <java classname="Hello">
+            <classpath>
+                <pathelement location="." />
+                <pathelement location="byte-buddy-1.10.18.jar" />
+            </classpath>
+        </java>
+        
+    </target>
+</project>
