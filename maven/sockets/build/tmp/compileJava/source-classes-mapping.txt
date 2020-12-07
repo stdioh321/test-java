@@ -1,0 +1,21 @@
+com/mycompany/app/Message.java
+ com.mycompany.app.Message
+ com.mycompany.app.MessageTypes
+com/mycompany/app/User.java
+ com.mycompany.app.User
+com/mycompany/exceptions/CustomException.java
+ com.mycompany.exceptions.CustomException
+com/mycompany/app/NanoHTTPd.java
+ com.mycompany.app.NanoHTTPd
+ com.mycompany.app.NanoHTTPd$1
+ com.mycompany.app.NanoHTTPd$HTTPSession
+ com.mycompany.app.NanoHTTPd$Response
+com/mycompany/app/Servidor.java
+ com.mycompany.app.Servidor
+com/mycompany/app/Tmp.java
+ com.mycompany.app.ProduzMensagem
+ com.mycompany.app.Tmp
+com/mycompany/app/Cliente.java
+ com.mycompany.app.Cliente
+com/mycompany/app/App.java
+ com.mycompany.app.App
