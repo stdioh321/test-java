@@ -4,6 +4,20 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<servlet-name>old</servlet-name>
+		<servlet-class>
+			com.stdioh321.webapp3.controllers.OldController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>old</servlet-name>
+		<url-pattern>/old/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/resources/*</url-pattern>
+	</servlet-mapping>
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/errorHandler</location>
