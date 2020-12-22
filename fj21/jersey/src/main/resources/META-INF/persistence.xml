@@ -17,6 +17,8 @@
 				value="org.hibernate.dialect.MySQL8Dialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
+						<property name="hibernate.hbm2ddl.auto" value="update" />
+			
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="pu-sqlite"
@@ -37,5 +39,44 @@
 			<property name="hibernate.connection.charSet" value="UTF-8" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
+	</persistence-unit>
+	<persistence-unit name="pu-h2"
+		transaction-type="RESOURCE_LOCAL">
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:h2:/tmp/dbh2" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="show_sql" value="true" />
+
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="pu-mongo"
+		transaction-type="RESOURCE_LOCAL">
+		<!-- <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider> -->
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+
+		<properties>
+			<!-- <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" 
+				/> -->
+			<property name="hibernate.ogm.datastore.database"
+				value="local" />
+			<property name="hibernate.ogm.datastore.host"
+				value="127.0.0.1" />
+			<property name="hibernate.ogm.datastore.provider"
+				value="mongodb" />
+			<property name="hibernate.ogm.datastore.port" value="27017" />
+			<property name="hibernate.ogm.datastore.create_database"
+				value="true" />
+			<property name="hibernate.ogm.datastore.username" value="" />
+			<property name="hibernate.ogm.datastore.password" value="" />
+		</properties>
+
 	</persistence-unit>
 </persistence>

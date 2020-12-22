@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,7 +35,7 @@ public class UserController {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUser() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu-sqlite");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu");
 		EntityManager em = emf.createEntityManager();
 		var users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
 		em.close();
@@ -49,7 +50,7 @@ public class UserController {
 	public User postUser(@Valid User user, @Context HttpServletRequest req) throws IOException {
 		System.out.println("BEFORE");
 		System.out.println(user);
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu-sqlite");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 
@@ -70,19 +71,45 @@ public class UserController {
 	@Path("{id}")
 	public Response putUser(@Valid User user, @PathParam("id") String id) throws IOException {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu-sqlite");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		var u = em.find(User.class, id);
+		User u = em.find(User.class, id);
 		if (u == null)
 			return Response.status(404).build();
 		user.setId(u.getId());
+
 		u.update(user);
-		
+		em.getTransaction().commit();
+
+		em.close();
+		emf.close();
+		return Response.ok().entity(u).build();
+
+	}
+
+	@Path("{id}")
+	@DELETE
+	public Response deleteUser(@PathParam("id") String id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		User u = em.find(User.class, id);
+		if (u == null)
+			return Response.status(404).build();
+		em.remove(u);
 		em.getTransaction().commit();
 		em.close();
 		emf.close();
 
 		return Response.ok().entity(u).build();
+	}
+
+	@Path("/tmp")
+	@GET
+	public Response doTmp() {
+		
+		throw new RuntimeException("Tudo Errado");
+//		return Response.ok().build();
 	}
 }

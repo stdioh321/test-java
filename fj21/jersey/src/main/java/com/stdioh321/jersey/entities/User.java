@@ -12,7 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -53,12 +55,30 @@ public class User implements Serializable, EntityExtender {
 	@JsonProperty(access = Access.READ_ONLY)
 
 	private Timestamp createdAt;
+	
+	@JsonProperty(access = Access.READ_ONLY)
+	@Column(name = "updated_at")
+	private Timestamp updatedAt;
+
+	public Timestamp getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Timestamp updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	@PrePersist
 	public void onCreateAt() {
-		this.createdAt = Timestamp.from(Instant.now());
+		Timestamp t = Timestamp.from(Instant.now());
+		this.createdAt = t;
+		this.updatedAt = t;
 	}
-
+	
+	@PreUpdate
+	public void onUpdatedAt() {
+		this.updatedAt = Timestamp.from(Instant.now());
+	}
 //	public void update(User user) {
 //
 //		try {
@@ -102,7 +122,9 @@ public class User implements Serializable, EntityExtender {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", createdAt=" + createdAt + "]";
+		return "User [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+
+	
 
 }
