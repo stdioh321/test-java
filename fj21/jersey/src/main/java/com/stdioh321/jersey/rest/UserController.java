@@ -40,7 +40,7 @@ public class UserController {
 		var users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
 		em.close();
 		emf.close();
-
+		
 		return users;
 	}
 
