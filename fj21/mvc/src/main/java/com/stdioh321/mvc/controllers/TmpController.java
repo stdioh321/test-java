@@ -14,9 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -32,13 +35,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.stdioh321.mvc.entities.Contact;
+import com.stdioh321.mvc.entities.Tarefa;
 import com.stdioh321.mvc.entities.User;
 
 @Controller
 public class TmpController {
 
+	private Tarefa tarefa;
+
+	@Autowired
+	public TmpController(Tarefa tarefa) {
+		// TODO Auto-generated constructor stub
+		this.tarefa = tarefa;
+	}
+
 	@RequestMapping(value = "/tmp-controller/{tmp}", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public String tmp(@Valid Contact c, BindingResult result, ModelMap model,@PathVariable String tmp) {
+	public String tmp(@Valid Contact c, BindingResult result, ModelMap model, @PathVariable String tmp) {
 		if (result.hasFieldErrors()) {
 			System.out.println("HAS ERRRORS");
 			return "home/home";
@@ -108,5 +120,12 @@ public class TmpController {
 		resp.setContentType("application/json");
 
 		return new ObjectMapper().writeValueAsString(users);
+	}
+
+	@ResponseBody
+	@GetMapping("/temp")
+	public String getTemp() {
+		System.out.println(this.tarefa);
+		return "getTemp";
 	}
 }

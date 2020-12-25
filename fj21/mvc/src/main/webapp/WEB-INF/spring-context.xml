@@ -19,10 +19,20 @@
 		base-package="com.stdioh321.mvc.controllers" />
 
 	<mvc:annotation-driven />
+
+
+	<mvc:resources location="/assets/" mapping="/assets/**" />
+
+	<mvc:interceptors>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/login" />
+			<bean class="com.stdioh321.mvc.interceptors.AuthInterceptor" />
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+	<bean id="tarefaBean" class="com.stdioh321.mvc.entities.Tarefa" autowire="byName"></bean>  
 	
-	
-	<mvc:resources location="/assets/"
-		mapping="/assets/**" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

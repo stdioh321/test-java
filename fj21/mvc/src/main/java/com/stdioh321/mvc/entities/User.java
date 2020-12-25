@@ -2,6 +2,11 @@ package com.stdioh321.mvc.entities;
 
 import java.sql.Timestamp;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+
+
 public class User {
 	private String id;
 	private String name;
@@ -10,6 +15,10 @@ public class User {
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
 
+	public User() {
+		this.setName("Random Name");
+	}
+	
 	public String getId() {
 		return id;
 	}
