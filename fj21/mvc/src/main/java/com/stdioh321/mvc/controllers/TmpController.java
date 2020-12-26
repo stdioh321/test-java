@@ -18,6 +18,7 @@ import javax.validation.Valid;
 
 import com.google.common.hash.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.stereotype.Controller;
@@ -47,136 +48,143 @@ import com.stdioh321.mvc.entities.User;
 @Controller
 public class TmpController {
 
-	@PersistenceContext(unitName = "pu-mysql", type = PersistenceContextType.EXTENDED)
-	private EntityManager em;
+    @PersistenceContext(unitName = "pu-mysql", type = PersistenceContextType.EXTENDED)
+    private EntityManager em;
 
-	private Tarefa tarefa;
+    private Tarefa tarefa;
 
 
-	@Autowired
-	public TmpController(Tarefa tarefa) {
-		// TODO Auto-generated constructor stub
-		this.tarefa = tarefa;
-	}
+    @Autowired
+    public TmpController(Tarefa tarefa) {
+        // TODO Auto-generated constructor stub
+        this.tarefa = tarefa;
+    }
 
-	@RequestMapping(value = "/tmp-controller/{tmp}", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public String tmp(@Valid Contact c, BindingResult result, ModelMap model, @PathVariable String tmp) {
-		if (result.hasFieldErrors()) {
-			System.out.println("HAS ERRRORS");
-			return "home/home";
-		} else
-			System.out.println(c);
-		System.out.println(tmp);
-		// org.springframework.web.servlet.DispatcherServlet
-		model.addAttribute("contact", c);
-		return "tmp";
-	}
+    @RequestMapping(value = "/tmp-controller/{tmp}", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public String tmp(@Valid Contact c, BindingResult result, ModelMap model, @PathVariable String tmp) {
+        if (result.hasFieldErrors()) {
+            System.out.println("HAS ERRRORS");
+            return "home/home";
+        } else
+            System.out.println(c);
+        System.out.println(tmp);
+        // org.springframework.web.servlet.DispatcherServlet
+        model.addAttribute("contact", c);
+        return "tmp";
+    }
 
-	@GetMapping(value = "/tmp-controller")
-	public String getTmp(Contact c, ModelMap model) {
-		// org.springframework.web.servlet.DispatcherServlet
+    @GetMapping(value = "/tmp-controller")
+    public String getTmp(Contact c, ModelMap model) {
+        // org.springframework.web.servlet.DispatcherServlet
 
-		System.out.println(c);
-		model.addAttribute("contact", c);
-		return "tmp";
-	}
+        System.out.println(c);
+        model.addAttribute("contact", c);
+        return "tmp";
+    }
 
-	@GetMapping(value = "/home")
-	public String getHome() {
-		return "home/home";
-	}
+    @GetMapping(value = "/home")
+    public String getHome() {
+        return "home/home";
+    }
 
-	@ResponseBody
-	@GetMapping(value = "/tmp")
-	public String getTmp(ModelMap model, HttpServletRequest req, HttpServletResponse resp)
-			throws SQLException, ClassNotFoundException, JsonProcessingException {
+    @ResponseBody
+    @GetMapping(value = "/tmp")
+    public String getTmp(ModelMap model, HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, ClassNotFoundException, JsonProcessingException {
 
-		System.out.println("Req ID: " + req.getParameter("id"));
+        System.out.println("Req ID: " + req.getParameter("id"));
 
 //		var m = new HashMap<String, String>();
 //		m.put("home", "home321");
 //		model.addAttribute("home", m);
 //		model.addAttribute("title", "Some Title");
 
-		ModelAndView mv = new ModelAndView();
-		Contact c = new Contact();
-		c.setId("asdas");
-		c.setName("asdasxzhcjxh8");
+        ModelAndView mv = new ModelAndView();
+        Contact c = new Contact();
+        c.setId("asdas");
+        c.setName("asdasxzhcjxh8");
 
-		mv.addObject("title", c);
-		mv.addObject("d", Calendar.getInstance().getTime());
-		mv.setViewName("home/home");
+        mv.addObject("title", c);
+        mv.addObject("d", Calendar.getInstance().getTime());
+        mv.setViewName("home/home");
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/fj21?user=root&password=includestdioh");
-		var cs = conn.prepareStatement("SELECT * FROM users;");
-		var rs = cs.executeQuery();
-		List<User> users = new ArrayList<User>();
-		while (rs.next()) {
-			User u = new User();
-			u.setId(rs.getString("id"));
-			u.setName(rs.getString("name"));
-			u.setUsername(rs.getString("username"));
-			u.setPassword(rs.getString("password"));
-			u.setCreatedAt(rs.getTimestamp("created_at"));
-			u.setUpdatedAt(rs.getTimestamp("updated_at"));
-			users.add(u);
-		}
-		conn.close();
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/fj21?user=root&password=includestdioh");
+        var cs = conn.prepareStatement("SELECT * FROM users;");
+        var rs = cs.executeQuery();
+        List<User> users = new ArrayList<User>();
+        while (rs.next()) {
+            User u = new User();
+            u.setId(rs.getString("id"));
+            u.setName(rs.getString("name"));
+            u.setUsername(rs.getString("username"));
+            u.setPassword(rs.getString("password"));
+            u.setCreatedAt(rs.getTimestamp("created_at"));
+            u.setUpdatedAt(rs.getTimestamp("updated_at"));
+            users.add(u);
+        }
+        conn.close();
 
-		mv.addObject("users", users);
+        mv.addObject("users", users);
 //		return mv;
-		resp.setContentType("application/json");
+        resp.setContentType("application/json");
 
-		return new ObjectMapper().writeValueAsString(users);
-	}
+        return new ObjectMapper().writeValueAsString(users);
+    }
 
-	@ResponseBody
-	@GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> getUsers() throws JsonProcessingException {
+    @ResponseBody
+    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<User> getUsers() throws JsonProcessingException {
 
 		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
 		EntityManager em = emFactory.createEntityManager();*/
-		System.out.println("WORKS");
-		List<User> users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
-		for (User u : users) {
-			System.out.println(u);
-		}
+        System.out.println("WORKS");
+        List<User> users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
+        for (User u : users) {
+            System.out.println(u);
+        }
 
-		return users;
-	}
+        return users;
+    }
 
 
-	@PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public @ResponseBody Object postUser(@Valid User user, BindingResult result, Model model, HttpServletResponse resp) throws JsonProcessingException {
-		if (result.hasErrors()) {
+    public @ResponseBody
+    Object postUser(@Valid User user, BindingResult result, Model model, HttpServletResponse resp) throws JsonProcessingException {
+        if (result.hasErrors()) {
 
-			resp.setStatus(400);
-			return new ObjectMapper().writeValueAsString(result.getAllErrors());
-		}
-		System.out.println("----- IT Worked -----");
+            resp.setStatus(400);
+            return new ObjectMapper().writeValueAsString(result.getAllErrors());
+        }
+        System.out.println("----- IT Worked -----");
 		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
 		EntityManager em = emFactory.createEntityManager();*/
-		try {
-		em.getTransaction().begin();
+        try {
+            em.getTransaction().begin();
 
-		String pass = user.getPassword();
-		user.setPassword(Hashing.sha256().hashString(pass, StandardCharsets.UTF_8).toString());
+            String pass = user.getPassword();
+            user.setPassword(Hashing.sha256().hashString(pass, StandardCharsets.UTF_8).toString());
 
-		em.persist(user);
-		em.flush();
+            em.persist(user);
+            em.flush();
 
-			em.getTransaction().commit();
-		}catch (Exception e){
-			System.out.println(e);
-		}
-		System.out.println(user);
-		em.close();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println(user);
+        em.close();
 
 
-		return user;
-	}
+        return user;
+    }
 
+
+    @ResponseBody
+    @GetMapping("/temp")
+    public String getTemp(@Value("${config.appname}") String appname) {
+        return "getTemp: " + appname;
+    }
 }

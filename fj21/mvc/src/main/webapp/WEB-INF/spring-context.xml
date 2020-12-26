@@ -42,4 +42,7 @@
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="pu-mysql"/>
     </bean>
+
+    <context:property-placeholder location="classpath:configs/configs.properties"/>
+
 </beans>
