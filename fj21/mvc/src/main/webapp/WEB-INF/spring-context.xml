@@ -13,13 +13,10 @@
 
 
     <context:annotation-config/>
-
     <context:component-scan
-            base-package="com.stdioh321.mvc.controllers"/>
+            base-package="com.stdioh321.mvc.controllers, com.stdioh321.mvc.configs"/>
 
     <mvc:annotation-driven/>
-
-
     <mvc:resources location="/assets/" mapping="/assets/**"/>
 
     <mvc:interceptors>
@@ -39,10 +36,44 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="pu-mysql"/>
-    </bean>
+
 
     <context:property-placeholder location="classpath:configs/configs.properties"/>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="${db.mysql.host}" />
+        <property name="username" value="${db.mysql.user}" />
+        <property name="password" value="${db.mysql.pass}" />
+    </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"></bean>
+
+        </property>
+
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="persistenceUnitName" value="pu-mysql" />
+        <property name="packagesToScan" >
+            <list>
+                <value>com.stdioh321.mvc.entities</value>
+            </list>
+        </property>
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="pu-mysql"/>
+    </bean>-->
 
 </beans>

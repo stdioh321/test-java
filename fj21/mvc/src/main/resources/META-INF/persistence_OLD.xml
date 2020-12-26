@@ -9,7 +9,9 @@
 	<!-- mysql -->
 	<persistence-unit name="pu-mysql">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!--<non-jta-data-source>dSourceMySql</non-jta-data-source>-->
 		<properties>
+
 			<property name="hibernate.archive.autodetection"
 				value="class" />
 			<property name="hibernate.dialect"

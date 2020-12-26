@@ -48,8 +48,8 @@ import com.stdioh321.mvc.entities.User;
 @Controller
 public class TmpController {
 
-    @PersistenceContext(unitName = "pu-mysql", type = PersistenceContextType.EXTENDED)
-    private EntityManager em;
+    @PersistenceContext(unitName = "pu-mysql")
+    private EntityManager eManager;
 
     private Tarefa tarefa;
 
@@ -140,7 +140,7 @@ public class TmpController {
 		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
 		EntityManager em = emFactory.createEntityManager();*/
         System.out.println("WORKS");
-        List<User> users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
+        List<User> users = eManager.createQuery("SELECT u FROM User u", User.class).getResultList();
         for (User u : users) {
             System.out.println(u);
         }
@@ -159,8 +159,8 @@ public class TmpController {
             return new ObjectMapper().writeValueAsString(result.getAllErrors());
         }
         System.out.println("----- IT Worked -----");
-		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
-		EntityManager em = emFactory.createEntityManager();*/
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
+		EntityManager em = emFactory.createEntityManager();
         try {
             em.getTransaction().begin();
 
@@ -184,7 +184,7 @@ public class TmpController {
 
     @ResponseBody
     @GetMapping("/temp")
-    public String getTemp(@Value("${config.appname}") String appname) {
-        return "getTemp: " + appname;
+    public String getTemp(@Value("${config.appname}") String appname, @Value("${db.mysql.host}") String host) {
+        return "getTemp: " + appname + ": HOST: " + host;
     }
 }
