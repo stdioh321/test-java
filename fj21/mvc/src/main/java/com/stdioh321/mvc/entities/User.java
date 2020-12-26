@@ -3,16 +3,13 @@ package com.stdioh321.mvc.entities;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -23,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "users")
+
 public class User {
 	@Id
 	@GeneratedValue(generator = "UUID")
@@ -35,15 +33,18 @@ public class User {
 	
 	
 	@NotNull
-	@NotEmpty
+	@org.hibernate.validator.constraints.NotBlank
 	@Column(name = "fullname", nullable = false)
 	private String name;
-	
-	@NotEmpty
+
+	@org.hibernate.validator.constraints.NotBlank
 	@NotNull
-	@Column(nullable = false)
+
+	@Column(nullable = false, unique = true)
+
 	private String username;
-	
+
+	@org.hibernate.validator.constraints.NotBlank
 	@Column(nullable = false)
 	private String password;
 	

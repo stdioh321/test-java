@@ -1,1 +1,7 @@
 /target/
+.classpath
+.project
+mvc.iml
+.settings
+.idea
+bin

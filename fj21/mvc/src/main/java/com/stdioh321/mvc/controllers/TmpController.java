@@ -1,5 +1,6 @@
 package com.stdioh321.mvc.controllers;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,13 +11,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.google.common.hash.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -47,7 +47,11 @@ import com.stdioh321.mvc.entities.User;
 @Controller
 public class TmpController {
 
+	@PersistenceContext(unitName = "pu-mysql", type = PersistenceContextType.EXTENDED)
+	private EntityManager em;
+
 	private Tarefa tarefa;
+
 
 	@Autowired
 	public TmpController(Tarefa tarefa) {
@@ -129,39 +133,50 @@ public class TmpController {
 	}
 
 	@ResponseBody
-	@GetMapping("/user")
-	public String getUsers() throws JsonProcessingException {
+	@GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<User> getUsers() throws JsonProcessingException {
 
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-sqlite");
-		EntityManager em = emFactory.createEntityManager();
+		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
+		EntityManager em = emFactory.createEntityManager();*/
+		System.out.println("WORKS");
 		List<User> users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
 		for (User u : users) {
 			System.out.println(u);
 		}
 
-		return new ObjectMapper().writeValueAsString(users);
+		return users;
 	}
 
-	@ResponseBody
-	@PostMapping("/user")
 
-	public String postUser(@Valid User user, BindingResult result, Model model) {
+	@PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	public @ResponseBody Object postUser(@Valid User user, BindingResult result, Model model, HttpServletResponse resp) throws JsonProcessingException {
 		if (result.hasErrors()) {
-			System.out.println(result.getAllErrors());
-			return "Not ok";
+
+			resp.setStatus(400);
+			return new ObjectMapper().writeValueAsString(result.getAllErrors());
 		}
-		System.out.println("----- NO ERRORS -----");
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-sqlite");
-		EntityManager em = emFactory.createEntityManager();
+		System.out.println("----- IT Worked -----");
+		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
+		EntityManager em = emFactory.createEntityManager();*/
+		try {
 		em.getTransaction().begin();
+
+		String pass = user.getPassword();
+		user.setPassword(Hashing.sha256().hashString(pass, StandardCharsets.UTF_8).toString());
+
 		em.persist(user);
 		em.flush();
-		em.getTransaction().commit();
+
+			em.getTransaction().commit();
+		}catch (Exception e){
+			System.out.println(e);
+		}
 		System.out.println(user);
 		em.close();
-		emFactory.close();
 
-		return "ok";
+
+		return user;
 	}
 
 }
