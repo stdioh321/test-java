@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+   http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<!-- mysql -->
+	<persistence-unit name="pu-mysql">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<properties>
+			<property name="hibernate.archive.autodetection"
+				value="class" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL8Dialect" />
+			<property name="hibernate.connection.driver_class"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="hibernate.connection.url"
+				value="jdbc:mysql://localhost:3306/fj21" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password"
+				value="includestdioh" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+	<!-- sqlite -->
+	<persistence-unit name="pu-sqlite">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<properties>
+			<property name="dialect"
+				value="org.sqlite.hibernate.dialect.SQLiteDialect" />
+			<property name="javax.persistence.jdbc.driver"
+				value="org.sqlite.JDBC" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:sqlite:sqlite_db.db" />
+			<property name="javax.persistence.jdbc.user"
+				value="" />
+			<property name="javax.persistence.jdbc.password"
+				value="" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>
