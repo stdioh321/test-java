@@ -33,7 +33,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="dialect"
-				value="org.sqlite.hibernate.dialect.SQLiteDialect" />
+					value="org.sqlite.hibernate.dialect.SQLiteDialect" />
 			<property name="javax.persistence.jdbc.driver"
 				value="org.sqlite.JDBC" />
 			<property name="javax.persistence.jdbc.url"

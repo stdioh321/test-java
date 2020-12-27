@@ -28,7 +28,8 @@
 
     </mvc:interceptors>
     <bean id="tarefaBean" class="com.stdioh321.mvc.entities.Tarefa"
-          autowire="byName"></bean>
+	autowire="byName"></bean>
+	
 
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -40,7 +41,7 @@
 
     <context:property-placeholder location="classpath:configs/configs.properties"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="${db.mysql.host}" />
         <property name="username" value="${db.mysql.user}" />
@@ -70,7 +71,7 @@
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
-    </bean>
+    </bean>-->
 
     <!--<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="pu-mysql"/>

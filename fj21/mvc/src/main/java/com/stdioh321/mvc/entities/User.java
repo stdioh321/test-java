@@ -1,6 +1,7 @@
 package com.stdioh321.mvc.entities;
 
-import java.sql.Timestamp;
+
+import java.sql.Timestamp ;
 import java.time.Instant;
 
 import javax.persistence.*;
@@ -21,11 +22,11 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Entity
 @Table(name = "users")
 
-public class User {
+public class User{
 	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
-	
+
 	
 	@JsonProperty(access = Access.READ_ONLY)
 	private String id;
@@ -59,7 +60,7 @@ public class User {
 	
 	
 	public User() {
-		this.setName("Random Name");
+
 	}
 
 	@PrePersist

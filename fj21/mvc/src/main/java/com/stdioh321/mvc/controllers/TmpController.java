@@ -21,9 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -45,13 +47,17 @@ import com.stdioh321.mvc.entities.Contact;
 import com.stdioh321.mvc.entities.Tarefa;
 import com.stdioh321.mvc.entities.User;
 
+
 @Controller
+@Component
 public class TmpController {
 
-    @PersistenceContext(unitName = "pu-mysql")
+    @PersistenceContext(unitName = "pu-sqlite")
     private EntityManager eManager;
 
     private Tarefa tarefa;
+
+    
 
 
     @Autowired
@@ -151,6 +157,8 @@ public class TmpController {
 
     @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
 
+
+    @Transactional(rollbackFor = Exception.class )
     public @ResponseBody
     Object postUser(@Valid User user, BindingResult result, Model model, HttpServletResponse resp) throws JsonProcessingException {
         if (result.hasErrors()) {
@@ -159,23 +167,25 @@ public class TmpController {
             return new ObjectMapper().writeValueAsString(result.getAllErrors());
         }
         System.out.println("----- IT Worked -----");
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
-		EntityManager em = emFactory.createEntityManager();
+		/*EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("pu-mysql");
+		EntityManager em = emFactory.createEntityManager();*/
         try {
-            em.getTransaction().begin();
+            /*eManager.getTransaction().begin();*/
 
             String pass = user.getPassword();
             user.setPassword(Hashing.sha256().hashString(pass, StandardCharsets.UTF_8).toString());
 
-            em.persist(user);
-            em.flush();
+            eManager.persist(user);
+            eManager.flush();
 
-            em.getTransaction().commit();
+            /*eManager.getTransaction().commit();*/
+
         } catch (Exception e) {
+
             System.out.println(e);
         }
         System.out.println(user);
-        em.close();
+        eManager.close();
 
 
         return user;
@@ -185,6 +195,8 @@ public class TmpController {
     @ResponseBody
     @GetMapping("/temp")
     public String getTemp(@Value("${config.appname}") String appname, @Value("${db.mysql.host}") String host) {
+    	
+    	
         return "getTemp: " + appname + ": HOST: " + host;
     }
 }
