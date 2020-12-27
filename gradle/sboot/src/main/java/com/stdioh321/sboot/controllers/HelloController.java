@@ -9,11 +9,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
 public class HelloController {
     @GetMapping("/hello")
     public String getHello(Model model){
         model.addAttribute("msg", "My Message");
+        List<String> names = new ArrayList<>();
+        names.add("Mario");
+        names.add("Luigi");
+        names.add("Peach");
+        names.add("Toad");
+        model.addAttribute("names", names);
         return "hello";
     }
     @ResponseBody

@@ -22,7 +22,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
     compile 'javax.servlet:jstl'
-    runtime 'org.springdoc:springdoc-openapi-ui:1.5.2'
+    runtime 'org.springframework.boot:spring-boot-starter-freemarker'
 
 }
 
