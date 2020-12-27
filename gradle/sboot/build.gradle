@@ -1,0 +1,38 @@
+
+
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'war'
+
+}
+
+group = 'com.stdioh321.sboot'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compile 'javax.servlet:jstl'
+    runtime 'org.springdoc:springdoc-openapi-ui:1.5.2'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+task customRun(type: JavaExec){
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    main = "com.stdioh321.sboot.SbootApplication"
+}
