@@ -1,24 +1,26 @@
 package com.stdioh321.sboot.entities.mysql;
 
-
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.stdioh321.sboot.utils.EntityExt;
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
-@Table(name = "city")
-@DynamicUpdate
+@Table(name = "state")
 @EntityListeners(AuditingEntityListener.class)
-public class City implements EntityExt<City> {
-
+public class State {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -26,33 +28,32 @@ public class City implements EntityExt<City> {
     /*@JsonProperty(access = JsonProperty.Access.READ_ONLY)*/
     private String id;
 
+
     @NotNull
     @Column(nullable = false, unique = true)
-    @NotBlank
-    @Pattern(regexp = "^\\D+$",message = "Should only contain letters")
+    @NotBlank(message = "Should not be Blank")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_state",nullable = false)
-    private State state;
+    @NotNull
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Should not be Blank")
+    private String initial;
 
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar createdAt;
 
     @LastModifiedDate
     @Column(name = "updated_at")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date updatedAt;
+
+
+
+
 
     public String getId() {
         return id;
@@ -70,12 +71,19 @@ public class City implements EntityExt<City> {
         this.name = name;
     }
 
+    public String getInitial() {
+        return initial;
+    }
 
-    public Date getCreatedAt() {
+    public void setInitial(String initial) {
+        this.initial = initial;
+    }
+
+    public Calendar getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Calendar createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -87,13 +95,12 @@ public class City implements EntityExt<City> {
         this.updatedAt = updatedAt;
     }
 
-
     @Override
     public String toString() {
-        return "City{" +
+        return "State{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", state=" + state +
+                ", initial='" + initial + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

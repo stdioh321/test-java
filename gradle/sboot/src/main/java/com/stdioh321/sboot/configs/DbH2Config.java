@@ -1,7 +1,7 @@
 package com.stdioh321.sboot.configs;
 
 
-import com.stdioh321.sboot.repositories.h2.StateRepository;
+import com.stdioh321.sboot.repositories.mysql.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 @Configuration
 @EnableJpaRepositories(
 
-        basePackageClasses = {StateRepository.class},
+        basePackages = "com.stdioh321.sboot.repositories.h2",
         entityManagerFactoryRef = "h2EntityManager",
         transactionManagerRef = "h2TransactionManager"
 

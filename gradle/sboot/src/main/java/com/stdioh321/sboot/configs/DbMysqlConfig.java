@@ -10,6 +10,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -19,15 +21,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.Optional;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackageClasses = {CityRepository.class},
+        basePackages = "com.stdioh321.sboot.repositories.mysql",
         entityManagerFactoryRef = "mysqlEntityManager",
         transactionManagerRef = "mysqlTransactionManager"
 )
-
-@PropertySource({ "classpath:persistence-multiple-db.properties" })
+@EnableJpaAuditing(auditorAwareRef = "mysqlAuditorProvider")
+@PropertySource({"classpath:persistence-multiple-db.properties"})
 public class DbMysqlConfig {
 
     @Autowired
@@ -35,7 +38,17 @@ public class DbMysqlConfig {
 
 
     @Bean
+    public AuditorAware<String> mysqlAuditorProvider() {
 
+        return new AuditorAware<String>() {
+            @Override
+            public Optional<String> getCurrentAuditor() {
+                return Optional.empty();
+            }
+        };
+    }
+
+    @Bean
     @Primary
     public LocalContainerEntityManagerFactoryBean mysqlEntityManager() {
 
