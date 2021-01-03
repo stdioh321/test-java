@@ -29,6 +29,11 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.27.Final'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.27.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
+    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+// https://mvnrepository.com/artifact/javax.inject/javax.inject
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
+// https://mvnrepository.com/artifact/javax.enterprise/cdi-api
+    providedCompile group: 'javax.enterprise', name: 'cdi-api', version: '2.0.SP1'
 
 
 }

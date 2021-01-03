@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.HashMap;
 
-@Configuration
+/*@Configuration
 @EnableJpaRepositories(
 
         basePackages = "com.stdioh321.sboot.repositories.h2",
@@ -26,9 +26,9 @@ import java.util.HashMap;
 
 
 )
-@PropertySource({"classpath:persistence-multiple-db.properties"})
+@PropertySource({"classpath:persistence-multiple-db.properties"})*/
 public class DbH2Config {
-
+/*
     @Autowired
     private Environment env;
 
@@ -77,5 +77,5 @@ public class DbH2Config {
         transactionManager.setEntityManagerFactory(
                 h2EntityManager().getObject());
         return transactionManager;
-    }
+    }*/
 }

@@ -3,6 +3,9 @@ package com.stdioh321.sboot.entities.mysql;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.stdioh321.sboot.utils.EntityExt;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -17,6 +21,7 @@ import java.util.Date;
 @Table(name = "city")
 @DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
+
 public class City implements EntityExt<City> {
 
 
@@ -34,15 +39,8 @@ public class City implements EntityExt<City> {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_state",nullable = false)
+
     private State state;
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate
@@ -70,6 +68,13 @@ public class City implements EntityExt<City> {
         this.name = name;
     }
 
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -86,7 +91,6 @@ public class City implements EntityExt<City> {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 
     @Override
     public String toString() {

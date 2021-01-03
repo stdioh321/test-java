@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import com.stdioh321.jersey.entities.User;
 
-public interface EntityExtender<T extends EntityExtender>  {
+public interface der<T extends der>  {
 	
 	default public void update(T ee) {
 		if(!getClass().equals(ee.getClass())) {
