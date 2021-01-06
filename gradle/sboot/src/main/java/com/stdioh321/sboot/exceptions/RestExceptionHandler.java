@@ -42,7 +42,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({Exception.class})
     protected ResponseEntity handleGenericException(Exception ex){
         ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR,"Internal Server Error", ex);
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println(ex.getClass().getName());
+        System.out.println(ex.getMessage());
         System.out.println(ex.getLocalizedMessage());
+        System.out.println("---------------------------------------------------------------------------");
         return new ResponseEntity(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
 
     }

@@ -34,12 +34,11 @@ public class City implements EntityExt<City> {
     @NotNull
     @Column(nullable = false, unique = true)
     @NotBlank
-    @Pattern(regexp = "^\\D+$",message = "Should only contain letters")
+    @Pattern(regexp = "^\\D+$", message = "Should only contain letters")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_state",nullable = false)
-
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_state", nullable = false)
     private State state;
 
     @Column(name = "created_at", updatable = false)

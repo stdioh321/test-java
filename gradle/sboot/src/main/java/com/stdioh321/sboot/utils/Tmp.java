@@ -37,6 +37,7 @@ public class Tmp {
     @Bean
     @Qualifier("mycity")
     public City getCity2() {
+        System.out.println("QUALIFIER MYCITY");
         var c = new City();
         c.setName("DEF");
         c.setId("987");

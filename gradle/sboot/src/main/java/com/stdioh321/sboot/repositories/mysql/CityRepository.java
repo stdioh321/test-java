@@ -1,5 +1,6 @@
 package com.stdioh321.sboot.repositories.mysql;
 
+import com.stdioh321.sboot.annotations.CustomAnn;
 import com.stdioh321.sboot.entities.mysql.City;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /*@Repository*/
+
 public interface CityRepository extends JpaRepository<City, String> {
     /*@Query("SELECT c FROM City c WHERE c.name LIKE %?1%")*/
     default public List<Object> findByCityName(String name) {
@@ -21,7 +23,7 @@ public interface CityRepository extends JpaRepository<City, String> {
     }
 
     default public List findByFields(String fields, String q) {
-        List<City> all = findAll();
+        List<?> all = findAll();
         fields = Objects.isNull(fields) ? "" : fields.toLowerCase().trim();
         q = Objects.isNull(q) ? "" : q.toLowerCase().trim();
         if (fields.isEmpty() && q.isEmpty()) return all;
@@ -52,6 +54,31 @@ public interface CityRepository extends JpaRepository<City, String> {
                     return hasMatch;
                 });
             }).collect(Collectors.toList());
+        }
+        if (!fields.isEmpty()) {
+            List<Map<String, Object>> tmpAll = new ArrayList<>();
+            String[] fieldItems = fields.split(",");
+            System.out.println(fieldItems);
+            tmpAll = all.stream().map(o -> {
+                Map<String, Object> currItem = new HashMap<>();
+                for (Field f : o.getClass().getDeclaredFields()) {
+                    f.setAccessible(true);
+                    boolean isPresent = Arrays.stream(fieldItems).anyMatch(s -> {
+                        return s.equals(f.getName().toLowerCase());
+                    });
+                    if (isPresent) {
+                        try {
+                            System.out.println(f.getName());
+                            currItem.put(f.getName(), f.get(o));
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                return currItem;
+            }).collect(Collectors.toList());
+
+            all = tmpAll;
         }
         return all;
     }
