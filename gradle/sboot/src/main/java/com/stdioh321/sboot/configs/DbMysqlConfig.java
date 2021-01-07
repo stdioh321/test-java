@@ -21,17 +21,19 @@ import java.util.HashMap;
 import java.util.Optional;
 
 @Configuration
-@EnableJpaRepositories(
+/*@EnableJpaRepositories(
         basePackages = "com.stdioh321.sboot.repositories.mysql",
         entityManagerFactoryRef = "mysqlEntityManager",
         transactionManagerRef = "mysqlTransactionManager"
 )
 
-@PropertySource({"classpath:persistence-multiple-db.properties"})
+@PropertySource({"classpath:persistence-multiple-db.properties"})*/
 public class DbMysqlConfig {
+/*
 
     @Autowired
     private Environment env;
+*/
 
 
     /*@Bean
@@ -44,6 +46,7 @@ public class DbMysqlConfig {
             }
         };
     }*/
+/*
 
     @Bean
     @Primary
@@ -93,5 +96,6 @@ public class DbMysqlConfig {
         return transactionManager;
     }
 
+*/
 
 }
