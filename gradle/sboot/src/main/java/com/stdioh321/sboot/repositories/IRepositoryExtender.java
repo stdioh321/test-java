@@ -28,6 +28,9 @@ public interface IRepositoryExtender<T,U>  extends JpaRepository<T,U>{
                         if (Arrays.stream(qFields).anyMatch(s -> {
                             return s.equals(field.getName().toLowerCase().trim());
                         })) {
+                            System.out.println(field.getName());
+                            System.out.println(field.get(obj).toString().toLowerCase().trim());
+
                             hasMatch = field.get(obj).toString().toLowerCase().trim().contains(qStr);
                         }
                     } else
@@ -56,7 +59,6 @@ public interface IRepositoryExtender<T,U>  extends JpaRepository<T,U>{
         if (!fields.isEmpty()) {
             List<Map<String, Object>> tmpAll = new ArrayList<>();
             String[] fieldItems = fields.split(",");
-            System.out.println(fieldItems);
             tmpAll = all.stream().map(o -> {
                 Map<String, Object> currItem = new HashMap<>();
                 for (Field f : o.getClass().getDeclaredFields()) {
@@ -66,11 +68,10 @@ public interface IRepositoryExtender<T,U>  extends JpaRepository<T,U>{
                     });
                     if (isPresent) {
                         try {
-                            System.out.println(f.getName());
                             currItem.put(f.getName(), f.get(o));
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            }
                     }
                 }
                 return currItem;

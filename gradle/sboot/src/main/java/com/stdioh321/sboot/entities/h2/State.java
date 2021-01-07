@@ -1,29 +1,29 @@
-package com.stdioh321.sboot.entities.mysql;
+package com.stdioh321.sboot.entities.h2;
 
-
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.stdioh321.sboot.utils.EntityExt;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
-@Table(name = "city")
-@DynamicUpdate
+@Table(name = "state")
 @EntityListeners(AuditingEntityListener.class)
-
-public class City implements EntityExt<City> {
-
+public class State {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -31,25 +31,34 @@ public class City implements EntityExt<City> {
     /*@JsonProperty(access = JsonProperty.Access.READ_ONLY)*/
     private String id;
 
+
+
     @NotNull
     @Column(nullable = false, unique = true)
-    @NotBlank
-    @Pattern(regexp = "^\\D+$", message = "Should only contain letters")
+    @NotBlank(message = "Should not be Blank")
     private String name;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_state", nullable = false)
-    private State state;
+    @NotNull
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Should not be Blank")
+    @Length(min = 2, max = 2)
+    private String initial;
+
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
     @LastModifiedDate
     @Column(name = "updated_at")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date updatedAt;
+
+
+
+
 
     public String getId() {
         return id;
@@ -67,12 +76,12 @@ public class City implements EntityExt<City> {
         this.name = name;
     }
 
-    public State getState() {
-        return state;
+    public String getInitial() {
+        return initial;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setInitial(String initial) {
+        this.initial = initial;
     }
 
     public Date getCreatedAt() {
@@ -93,10 +102,10 @@ public class City implements EntityExt<City> {
 
     @Override
     public String toString() {
-        return "City{" +
+        return "State{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", state=" + state +
+                ", initial='" + initial + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

@@ -1,12 +1,13 @@
 package com.stdioh321.sboot.configs;
 
 
-import com.stdioh321.sboot.repositories.mysql.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -16,8 +17,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.Optional;
 
-/*@Configuration
+@Configuration
 @EnableJpaRepositories(
 
         basePackages = "com.stdioh321.sboot.repositories.h2",
@@ -26,13 +28,22 @@ import java.util.HashMap;
 
 
 )
-@PropertySource({"classpath:persistence-multiple-db.properties"})*/
+@EnableJpaAuditing(auditorAwareRef = "auditorProvider")
+@PropertySource({"classpath:persistence-multiple-db.properties"})
 public class DbH2Config {
-/*
     @Autowired
     private Environment env;
 
+    @Bean
+    public AuditorAware<String> auditorProvider() {
 
+        return new AuditorAware<String>() {
+            @Override
+            public Optional<String> getCurrentAuditor() {
+                return Optional.empty();
+            }
+        };
+    }
     @Bean
 
     public LocalContainerEntityManagerFactoryBean h2EntityManager() {
@@ -77,5 +88,5 @@ public class DbH2Config {
         transactionManager.setEntityManagerFactory(
                 h2EntityManager().getObject());
         return transactionManager;
-    }*/
+    }
 }

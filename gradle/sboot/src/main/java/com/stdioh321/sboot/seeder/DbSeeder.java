@@ -1,9 +1,11 @@
 package com.stdioh321.sboot.seeder;
 
-import com.stdioh321.sboot.entities.mysql.City;
-import com.stdioh321.sboot.entities.mysql.State;
-import com.stdioh321.sboot.repositories.mysql.CityRepository;
-import com.stdioh321.sboot.repositories.mysql.StateRepository;
+import com.stdioh321.sboot.entities.h2.City;
+import com.stdioh321.sboot.entities.h2.State;
+import com.stdioh321.sboot.repositories.h2.CityRepository;
+import com.stdioh321.sboot.repositories.h2.StateRepository;
+import com.stdioh321.sboot.utils.Utils;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -13,26 +15,28 @@ import java.util.Random;
 
 
 @Configuration
-public class MysqlSeeder {
+
+public class DbSeeder {
     @Autowired
     private CityRepository cityRepository;
     @Autowired
     private StateRepository stateRepository;
 
-    @EventListener()
+    @EventListener
+
     public void seed(ContextRefreshedEvent event) {
-        System.out.println("--------- MysqlSeeder EventListener START ---------");
+        System.out.println("--------- DbSeeder EventListener START ---------");
         if (stateRepository.count() < 1) {
             for (int i = 0; i < 3; i++) {
                 State s = new State();
                 s.setName("state " + i);
-                s.setInitial("initial " + i);
-                s = stateRepository.save(s);
+                s.setInitial("s" + i);
+                s = stateRepository.saveAndFlush(s);
 
-                /*City c = new City();
-                c.setName("city " + new Random().nextInt());
+                City c = new City();
+                c.setName("city " + Utils.getRandomString(5));
                 c.setState(s);
-                cityRepository.save(c);*/
+                cityRepository.save(c);
             }
         }
         /*if (cityRepository.count() < 1) {
@@ -45,6 +49,6 @@ public class MysqlSeeder {
             }
         }*/
 
-        System.out.println("--------- MysqlSeeder EventListener END ---------");
+        System.out.println("--------- DbSeeder EventListener END ---------");
     }
 }

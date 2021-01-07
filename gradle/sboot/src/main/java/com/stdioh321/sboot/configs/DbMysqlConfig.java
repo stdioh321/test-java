@@ -1,14 +1,11 @@
 package com.stdioh321.sboot.configs;
 
 
-import com.stdioh321.sboot.repositories.mysql.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -29,7 +26,7 @@ import java.util.Optional;
         entityManagerFactoryRef = "mysqlEntityManager",
         transactionManagerRef = "mysqlTransactionManager"
 )
-@EnableJpaAuditing(auditorAwareRef = "mysqlAuditorProvider")
+
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 public class DbMysqlConfig {
 
@@ -37,8 +34,8 @@ public class DbMysqlConfig {
     private Environment env;
 
 
-    @Bean
-    public AuditorAware<String> mysqlAuditorProvider() {
+    /*@Bean
+    public AuditorAware<String> auditorProvider() {
 
         return new AuditorAware<String>() {
             @Override
@@ -46,7 +43,7 @@ public class DbMysqlConfig {
                 return Optional.empty();
             }
         };
-    }
+    }*/
 
     @Bean
     @Primary
