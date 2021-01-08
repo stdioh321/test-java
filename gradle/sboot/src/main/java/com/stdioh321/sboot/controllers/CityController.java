@@ -9,6 +9,8 @@ import com.stdioh321.sboot.services.CityService;
 import com.stdioh321.sboot.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ import java.util.List;
 @RequestScope
 @RequestMapping("${api.url.v1}")
 public class CityController {
+    @Autowired
+    private Environment env;
 
     @Autowired
     private TmpRepository tmp;
@@ -41,7 +45,7 @@ public class CityController {
 
     @ResponseBody
     @GetMapping("/city")
-    public ResponseEntity getCities(@PathParam("fields") String fields, @PathParam("q") String q) {
+    public ResponseEntity getCities(@PathParam("fields") String fields, @PathParam("q") String q,@Value("${tmp}") String tmp) {
 
         return new ResponseEntity(cityService.getByFull(fields, q), HttpStatus.OK);
     }
@@ -55,21 +59,7 @@ public class CityController {
 
     }
 
-    @ResponseBody
-    @PostMapping("/state")
-    public ResponseEntity postState(@Valid @RequestBody State state, BindingResult result) {
-        if (result.hasErrors()) throw new EntityValidationException(result.getFieldErrors());
-        return new ResponseEntity(stateService.add(state), HttpStatus.OK);
 
-
-    }
-
-
-    @ResponseBody
-    @GetMapping("/state")
-    public List<State> getStates(@PathParam("fields") String fields, @PathParam("q") String q) {
-        return stateService.getAll();
-    }
 
 
 }

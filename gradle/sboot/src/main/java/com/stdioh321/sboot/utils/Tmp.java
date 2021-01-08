@@ -20,22 +20,21 @@ public class Tmp {
         System.out.println("------- TMP CONSTRUCTOR -------");
     }
 
-    @Bean
-    /*@Qualifier("mycity")*/
+    /*@Bean
+    @Qualifier("mycity")
     public City getCity1() {
         var c = new City();
-        /*c.setName("abc");
-        c.setId("123");*/
+        c.setName("abc");
+        c.setId("123");
         return c;
-    }
+    }*/
 
-    @Bean
-    @Qualifier("mycity")
+    @Bean("mycity")
     public City getCity2() {
         System.out.println("QUALIFIER MYCITY");
         var c = new City();
-        /*c.setName("DEF");
-        c.setId("987");*/
+        c.setName("DEF");
+        c.setId("987");
         return c;
     }
 

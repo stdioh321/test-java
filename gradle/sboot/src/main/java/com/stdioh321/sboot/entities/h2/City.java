@@ -38,14 +38,5 @@ public class City implements EntityExt<City> {
     @JoinColumn(name = "id_state", nullable = false)
     private State state;
 
-    @Column(name = "created_at", updatable = false)
-    @CreatedDate
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Date createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Date updatedAt;
 
 }
