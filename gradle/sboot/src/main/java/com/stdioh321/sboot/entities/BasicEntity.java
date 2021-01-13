@@ -41,7 +41,7 @@ public abstract class BasicEntity {
         try {
             for (Field f : getClass().getDeclaredFields()) {
                 f.setAccessible(true);
-                if (Arrays.stream(fieldsToIgnore).anyMatch(s -> f.getName().contains(s))) break;
+                if (Arrays.stream(fieldsToIgnore).anyMatch(s -> f.getName().equals(s))) break;
                 /*if(Arrays.stream(f.getAnnotations()).anyMatch(annotation -> annotation.getClass().equals(LastModifiedDate.class))) break;*/
 
                 if (!Objects.isNull(f.get(entity))) {

@@ -14,9 +14,13 @@ public class StateService implements GenericService<State> {
     @Autowired
     private StateRepository stateRepository;
 
+
+    public State getById(String id){
+        return stateRepository.findById(id).orElse(null);
+    }
+
     @Override
     public List<State> getAll() {
-
         return stateRepository.findAll();
     }
 

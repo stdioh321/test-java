@@ -18,7 +18,11 @@ import java.util.List;
 @RestController
 @RequestScope
 @RequestMapping("${api.url.v1}/state")
-public class StateController {
+public class StateController{
+
+    @Autowired
+    private StateService service;
+
     @Autowired
     private StateService stateService;
 
@@ -36,6 +40,11 @@ public class StateController {
     @GetMapping
     public List<State> getStates(@PathParam("fields") String fields, @PathParam("q") String q) {
         return stateService.getAll();
+    }
+    @ResponseBody
+    @GetMapping("/{id}")
+    public State getState(@PathVariable("id") String id) {
+        return stateService.getById(id);
     }
 
     @ResponseBody
